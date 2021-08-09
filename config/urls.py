@@ -23,7 +23,7 @@ from dj_rest_auth.registration.views import VerifyEmailView
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('jUWrbF5kqoNi66qHhNae/', admin.site.urls),
     path('api/v1/', include('api.urls')),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
