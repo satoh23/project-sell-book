@@ -26,7 +26,7 @@ class ListBoughtArticleSerializer(serializers.ModelSerializer):
 
     def get_article_thumbnail(self, obj):
         try:
-            article_thumbnail = obj.article.thumbnail
+            article_thumbnail = obj.article.encoded_thumbnail
             return article_thumbnail
         except:
             return None
