@@ -6,3 +6,5 @@ from .get_detail_article import GetDetailArticleView
 from .get_body import GetBodyView
 from .buy_article import BuyArticleView
 from .is_bought_article import IsBoughtView
+from .get_list_bought_article import ListBoughtArticleView
+

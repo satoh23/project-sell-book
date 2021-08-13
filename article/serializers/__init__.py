@@ -5,3 +5,4 @@ from .list_article_serializer import ListDetailSerializer
 from .detail_article_serializer import DetailArticleSerializer
 from .get_body_serializer import GetBodySerializer
 from .get_history_serializer import GetHistorySerializer
+from .list_bought_article_serializer import ListBoughtArticleSerializer
