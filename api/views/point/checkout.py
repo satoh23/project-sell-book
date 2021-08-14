@@ -15,9 +15,15 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 @api_view(['POST'])
 def save_stripe_info(request):
     data = request.data
-    purchase_id = data['purchase']
-    article_id = data['article']
-    amount = Detail.objects.values_list('amount', flat=True).get(pk=article_id)
+    purchase_id = ""
+    article_id = ""
+    amount = 0
+    if len(data['purchase']) < 2:
+        return Response(status=status.HTTP_401_UNAUTHORIZED, data={'message': '先にログインしてください'})
+    else:
+        purchase_id = data['purchase']
+        article_id = data['article']
+        amount = Detail.objects.values_list('amount', flat=True).get(pk=article_id)
 
     if amount >= 1:
         name = data['name']
