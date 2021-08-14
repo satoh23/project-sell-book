@@ -25,6 +25,12 @@ def save_stripe_info(request):
         article_id = data['article']
         amount = Detail.objects.values_list('amount', flat=True).get(pk=article_id)
 
+    purchase = CustomUser.objects.get(pk=purchase_id)
+    article = Detail.objects.get(pk=article_id)
+    history = PurchaseHistory.objects.filter(purchase=purchase, article=article)
+    if len(history) > 0:
+        return Response(status=status.HTTP_400_BAD_REQUEST, data={'message': '既に購入済みです'})
+
     if amount >= 1:
         name = data['name']
         email = data['email']
@@ -49,8 +55,6 @@ def save_stripe_info(request):
         except Exception:
             return Response(status=status.HTTP_400_BAD_REQUEST, data={'message': '決済に失敗しました'})
 
-    purchase = CustomUser.objects.get(pk=purchase_id)
-    article = Detail.objects.get(pk=article_id)
     purchase_history = PurchaseHistory(purchase=purchase, article=article)
     purchase_history.save()
     return Response(status=status.HTTP_200_OK,
