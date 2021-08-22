@@ -22,6 +22,7 @@ class Detail(models.Model):
     category = models.ForeignKey(Category, verbose_name='カテゴリ', on_delete=models.PROTECT)
     author_id = models.ForeignKey(CustomUser, verbose_name='筆者', on_delete=models.PROTECT)
     amount = models.PositiveIntegerField('価格', default=0)
+    password = models.CharField('パスワード', max_length=100)
 
     created_date = models.DateTimeField('登録日', default=timezone.now)
 

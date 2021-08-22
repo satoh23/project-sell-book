@@ -7,4 +7,4 @@ from .get_body import GetBodyView
 from .buy_article import BuyArticleView
 from .is_bought_article import IsBoughtView
 from .get_list_bought_article import ListBoughtArticleView
-
+from .buy_article_use_password import Buy_article_use_password

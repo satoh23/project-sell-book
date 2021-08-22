@@ -6,7 +6,7 @@ from api.views.accounts import (LoginView, LogoutView, get_refresh_view,
 
 from api.views.article import (CreateView, CreateNotThumbnailView,
                                ListCategoryView, ListDetailView, GetDetailArticleView,
-                               GetBodyView, BuyArticleView,
+                               GetBodyView, BuyArticleView, Buy_article_use_password,
                                IsBoughtView, ListBoughtArticleView)
 
 from api.views.point import save_stripe_info
@@ -27,6 +27,7 @@ urlpatterns = [
     path('get-detail-article/<str:pk>/', GetDetailArticleView.as_view()),
     path('get-body/<str:pk>/', GetBodyView.as_view()),
     path('buy-article/', BuyArticleView.as_view()),
+    path('buy-article-use-password/', Buy_article_use_password),
     path('is-bought-article/', IsBoughtView.as_view()),
 
     path('save-stripe-info/', save_stripe_info),
