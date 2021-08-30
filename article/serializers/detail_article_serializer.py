@@ -10,7 +10,7 @@ class DetailArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Detail
-        fields = ('id', 'thumbnail', 'title', 'summary', 'amount',
+        fields = ('id', 'thumbnail', 'title', 'summary', 'amount', 'password_url',
                   'category_name', 'category', 'created_date', 'author', 'author_id')
 
     def get_author(self, obj):
