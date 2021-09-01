@@ -31,29 +31,28 @@ def save_stripe_info(request):
     if len(history) > 0:
         return Response(status=status.HTTP_400_BAD_REQUEST, data={'message': '既に購入済みです'})
 
-    if amount >= 1:
-        name = data['name']
-        email = data['email']
-        payment_method_id = data['payment_method_id']
+    name = data['name']
+    email = data['email']
+    payment_method_id = data['payment_method_id']
 
-        customer_data = stripe.Customer.list(email=email).data
+    customer_data = stripe.Customer.list(email=email).data
 
-        if len(customer_data) == 0:
-            customer = stripe.Customer.create(
-                name=name, email=email, payment_method=payment_method_id)
-        else:
-            customer = customer_data[0]
+    if len(customer_data) == 0:
+        customer = stripe.Customer.create(
+           name=name, email=email, payment_method=payment_method_id)
+    else:
+        customer = customer_data[0]
 
-        try:
-            stripe.PaymentIntent.create(
-                customer=customer,
-                payment_method=payment_method_id,
-                currency='jpy',
-                amount=math.ceil(amount*1.038),
-                confirm=True
-            )
-        except Exception:
-            return Response(status=status.HTTP_400_BAD_REQUEST, data={'message': '決済に失敗しました'})
+    try:
+        stripe.PaymentIntent.create(
+            customer=customer,
+            payment_method=payment_method_id,
+            currency='jpy',
+            amount=math.ceil(amount*1.038),
+            confirm=True
+        )
+    except Exception:
+        return Response(status=status.HTTP_400_BAD_REQUEST, data={'message': '決済に失敗しました'})
 
     purchase_history = PurchaseHistory(purchase=purchase, article=article)
     purchase_history.save()
