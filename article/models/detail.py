@@ -24,7 +24,7 @@ class Detail(models.Model):
     amount = models.PositiveIntegerField('価格', default=0)
     password = models.CharField('パスワード', max_length=100)
     password_url = models.CharField('パスワードを販売しているURL', max_length=100)
-    now_public = models.BooleanField(default=False)
+    now_public = models.BooleanField(default=False, verbose_name='公開する')
 
     created_date = models.DateTimeField('登録日', default=timezone.now)
 
