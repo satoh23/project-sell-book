@@ -15,7 +15,7 @@ class DetailFilter(filters.FilterSet):
 
 
 class ListDetailView(generics.ListAPIView):
-    queryset = Detail.objects.all()
+    queryset = Detail.objects.filter(now_public=True)
     serializer_class = ListDetailSerializer
     permission_classes = (AllowAny,)
     filter_class = DetailFilter
